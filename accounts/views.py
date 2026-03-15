@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Myuser
 from django.contrib import messages
 from django.shortcuts import redirect
-
+from django.contrib.auth.hashers import make_password
 def signout_view(request):
     return render (request,'signout.html')   
 def login_view(request):
@@ -37,7 +37,13 @@ def signup_view(request):
         if password !=confirm_password:
             return render(request,'signup.html',{'error':'Passwords do not match'})
         
-        my_user =Myuser.objects.create(email=email,first_name=first_name,last_name=last_name,password=password)
+        # my_user =Myuser.objects.create(email=email,first_name=first_name,last_name=last_name,password=password)
+        my_user = Myuser.objects.create(
+    email=email,
+    first_name=first_name,
+    last_name=last_name,
+    password=make_password(password)
+)
         my_user.save() 
         print("signup Successful")
         messages.success(request,'Account has been created successfully')
