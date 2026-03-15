@@ -81,17 +81,26 @@ WSGI_APPLICATION = 'swimming_pool.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'swimming_pool_db',  # your DB name
+#         'USER': 'root',              # your MySQL username
+#         'PASSWORD': 'Kkvsp@123', # your password
+#         'HOST': '127.0.0.1',         # or localhost
+#         'PORT': '3306',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'swimming_pool_db',  # your DB name
-        'USER': 'root',              # your MySQL username
-        'PASSWORD': 'Kkvsp@123', # your password
-        'HOST': '127.0.0.1',         # or localhost
-        'PORT': '3306',
+        'NAME': os.getenv('MYSQLDATABASE'),
+        'USER': os.getenv('MYSQLUSER'),
+        'PASSWORD': os.getenv('MYSQLPASSWORD'),
+        'HOST': os.getenv('MYSQLHOST'),
+        'PORT': os.getenv('MYSQLPORT'),
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
