@@ -1,1 +1,1 @@
-web: gunicorn swimming_pool.wsgi
+web: python manage.py migrate && gunicorn swimming_pool.wsgi
