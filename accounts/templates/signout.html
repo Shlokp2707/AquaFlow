@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% for message in messages%}
+        <h3 class=""role ='alert'>{{message}}</h3>
+{% endfor %}
+    {% if user.is_authenticated %}
+    <h1 class="">hello {{first_name}} you are welcome</h1>
+    {% endif%}
+    <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'signup' %}">signup</a>
+    <a href="{% url 'signout' %}">signout</a>
+</body>
+</html>

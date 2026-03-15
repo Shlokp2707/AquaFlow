@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swimming Pool Membership Plans</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use Inter font and enable custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-cyan': '#06b6d4',
+                        'primary-purple': '#7e22ce',
+                    },
+                    keyframes: {
+                        // Custom keyframe for content fade-in and slide-up
+                        fadeInSlideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                    animation: {
+                        'fade-in-slide': 'fadeInSlideUp 0.6s ease-out forwards',
+                        'button-shimmer': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Add Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styling for Background and Glass Effect */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Maintaining the light theme gradient */
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d44d 50%, #7e22ce4d 100%);
+            min-height: 100vh;
+        }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            position: relative;
+            overflow: hidden;
+            opacity: 0; /* Initial state for animation */
+        }
+        .glass-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(126, 34, 206, 0.3), 0 4px 6px -4px rgba(6, 182, 212, 0.3);
+            transform: translateY(-5px); /* Lift-up effect */
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-6 lg:p-10">
+
+    <!-- MEMBERSHIP VIEW CONTENT -->
+    <section id="membership-view" class="max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <div class="text-center mb-12 p-6 lg:p-8 rounded-2xl bg-white/70 shadow-xl border border-primary-purple/10 animate-fade-in-slide">
+            <h1 class="text-5xl font-extrabold text-primary-purple mb-3">Choose Your Membership Plan</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Select a plan that fits your swimming goals and enjoy premium, tailored benefits.</p>
+        </div>
+
+        <!-- Membership Cards Grid - Responsive: 1 on small, 2 on medium, 4 on large -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- 1. Basic Plan Card -->
+            <div class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:border-gray-300 animate-fade-in-slide" style="animation-delay: 0s;">
+                <div class="mb-6">
+                    <span class="text-sm font-semibold uppercase text-gray-500 tracking-wider">Start Here</span>
+                    <h2 class="text-3xl font-bold text-gray-800 mt-2 mb-4">Basic Plan</h2>
+                    <p class="text-5xl font-extrabold text-gray-600 mb-6">$49<span class="text-base font-medium text-gray-500">/mo</span></p>
+
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Main Lap Pool Access Only
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Standard Operating Hours
+                        </li>
+                        <li class="flex items-start text-gray-500">
+                            <svg class="w-5 h-5 text-red-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+                            No Coaching Included
+                        </li>
+                    </ul>
+                </div>
+                <a href="{% url 'member_register'%}?plan=basic"><button class="w-full py-3 bg-gray-500 text-white font-semibold rounded-xl hover:bg-gray-700 transition duration-300 shadow-md">
+                    Join Now
+                </button></a>
+            </div>
+
+            <!-- 2. Premium Plan Card (Cyan Focus - Best Value) -->
+            <div class="glass-card rounded-2xl p-8 flex flex-col justify-between border-primary-cyan/50 shadow-xl hover:border-primary-cyan animate-fade-in-slide" style="animation-delay: 0.1s;">
+                <div class="mb-6">
+                    <span class="text-sm font-semibold uppercase text-primary-cyan tracking-wider">Best Value</span>
+                    <h2 class="text-3xl font-bold text-primary-cyan mt-2 mb-4">Premium Plan</h2>
+                    <p class="text-5xl font-extrabold text-primary-cyan mb-6">$89<span class="text-basefont-medium text-gray-500">/mo</span></p>
+
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            **All Pools Access** (Therapy included)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Extended Access Hours (Weekends incl.)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            1 Free Coaching Session/Month
+                        </li>
+                    </ul>
+                </div>
+                <a href="{% url 'member_register'%}?plan=priminum"><button class="w-full py-3 bg-primary-cyan text-white font-semibold rounded-xl hover:bg-primary-purple transition duration-300 shadow-lg shadow-primary-cyan/30 animate-button-shimmer">
+                    Join Now
+                </button>
+                </a>
+            </div>
+
+            <!-- 3. Elite Plan Card (Purple Focus - Premium) -->
+            <div class="glass-card rounded-2xl p-8 flex flex-col justify-between border-primary-purple/50 shadow-xl hover:border-primary-purple animate-fade-in-slide" style="animation-delay: 0.2s;">
+                <div class="mb-6">
+                    <span class="text-sm font-semibold uppercase text-primary-purple tracking-wider">The Ultimate Swim</span>
+                    <h2 class="text-3xl font-bold text-primary-purple mt-2 mb-4">Elite Plan</h2>
+                    <p class="text-5xl font-extrabold text-primary-purple mb-6">$149<span class="text-base font-medium text-gray-500">/mo</span></p>
+
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            **24/7 Priority Access**
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Unlimited Private Coaching
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Free Spa, Sauna, & Locker Rental
+                        </li>
+                    </ul>
+                </div>
+                <a href="{% url 'member_register'%}?plan=elite"> <button class="w-full py-3 bg-primary-purple text-white font-semibold rounded-xl hover:bg-primary-cyan transition duration-300 shadow-lg shadow-primary-purple/30 animate-button-shimmer">
+                    Join Now
+                </button>
+                </a>
+            </div>
+
+            <!-- 4. Family Plan Card (Green Accent) -->
+            <div class="glass-card rounded-2xl p-8 flex flex-col justify-between hover:border-green-500/50 animate-fade-in-slide" style="animation-delay: 0.3s;">
+                <div class="mb-6">
+                    <span class="text-sm font-semibold uppercase text-green-600 tracking-wider">Group Discount</span>
+                    <h2 class="text-3xl font-bold text-green-700 mt-2 mb-4">Family Plan</h2>
+                    <p class="text-5xl font-extrabold text-green-600 mb-6">$199<span class="text-base font-medium text-gray-500">/mo</span></p>
+
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Up to 4 Members Included
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Includes All Premium Features
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            Kids' Pool & Splash Zone Access
+                        </li>
+                    </ul>
+                </div>
+                <a href="{% url 'member_register'%}?plan=family"> <button class="w-full py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition duration-300 shadow-md">
+                    Join Now
+                </button>
+                </a>
+            </div>
+        </div>
+
+    
+    </section>
+
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.glass-card').forEach(el => {
+                // Remove opacity: 0 set in CSS and let the animation take over
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>

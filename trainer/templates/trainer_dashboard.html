@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Dashboard</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for aesthetic icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Configure Tailwind to use Inter font and enable custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-cyan': '#06b6d4',
+                        'primary-purple': '#7e22ce',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-down': 'slideDown 0.5s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Add Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styling for Background and Layout */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d44d 50%, #7e22ce4d 100%);
+            min-height: 100vh;
+        }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border-radius: 1.5rem;
+        }
+        .nav-link {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            color: #7e22ce; /* primary-purple on hover */
+            text-shadow: 0 0 5px rgba(126, 34, 206, 0.5);
+        }
+        .nav-link.active {
+            font-weight: 700;
+            color: #06b6d4; /* primary-cyan for active state */
+            border-bottom: 2px solid #06b6d4;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Main Application Container -->
+    <div id="app" class="flex flex-col min-h-screen">
+
+        <!-- Navigation Bar (Header) -->
+        <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-lg border-b border-primary-cyan/20 p-4 animate-slide-down">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <!-- Logo/Title -->
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="dumbbell" class="text-primary-purple w-6 h-6"></i>
+                    <span class="text-2xl font-bold text-primary-purple tracking-tight">Trainer Dashboard</span>
+                </div>
+
+                <!-- Navigation Links (Desktop) -->
+                <div class="hidden md:flex space-x-6 text-lg font-medium">
+                    <a href="#" class="nav-link active" data-view="dashboard">Dashboard</a>
+     <a href="{% url 'trainer_profile' %}" class="nav-link">
+    <i data-lucide="user" class="w-4 h-4 inline-block mr-1"></i>
+    Profile
+</a>
+                    <a href="#" class="nav-link" data-view="contact" onclick="showNotification('Contact Us', 'Showing Contact Form/Details...')">
+                        <i data-lucide="mail" class="w-4 h-4 inline-block mr-1"></i>
+                        Contact Us
+                    </a>
+                    <a href="/" class="nav-link text-red-600 hover:text-red-800" data-view="logout" onclick="showNotification('Logout', 'Logging out Trainer...')">
+                        <i data-lucide="log-out" class="w-4 h-4 inline-block mr-1"></i>
+                        Logout
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-primary-purple hover:text-primary-cyan transition duration-150 rounded-lg">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden mt-3 space-y-2 py-2 border-t border-primary-cyan/20">
+                <a href="#" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100/70" data-view="dashboard">Dashboard</a>
+                <a href="#" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100/70" data-view="profile" onclick="showNotification('Profile Link', 'Navigating to Trainer Profile Update Page...')">Profile</a>
+                <a href="#" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:bg-gray-100/70" data-view="contact" onclick="showNotification('Contact Us', 'Showing Contact Form/Details...')">Contact Us</a>
+                <a href="/" class="block px-3 py-2 rounded-lg text-base font-medium text-red-600 hover:bg-red-50/70" data-view="logout" onclick="showNotification('Logout', 'Logging out Trainer...')">Logout</a>
+            </div>
+        </nav>
+        
+        <!-- Main Content Area -->
+        <main class="flex-grow p-4 sm:p-8">
+            <div class="max-w-7xl mx-auto">
+                <!-- Welcome Card / Dashboard Summary -->
+                <div id="dashboard-content" class="glass-card p-6 sm:p-10 animate-fade-in" style="animation-delay: 0.1s;">
+                    <h2 class="text-3xl font-extrabold text-primary-purple mb-4 flex items-center">
+                        <i data-lucide="sparkles" class="w-8 h-8 mr-2 text-primary-cyan"></i>
+                        Welcome Back, Trainer  {{first_name}}
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6">
+                        This is your central hub. Quickly access your profile, view scheduled sessions, and manage your availability.
+                    </p>
+                    
+                    <!-- Quick Access Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                        
+                        <!-- Card 1: Profile -->
+                        <div class="glass-card p-5 border-l-4 border-primary-cyan hover:shadow-xl transition duration-300">
+                            <i data-lucide="award" class="w-8 h-8 text-primary-cyan mb-2"></i>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Update Profile</h3>
+                            <p class="text-sm text-gray-600">Review and modify your contact info, experience, and specialty.</p>
+                        </div>
+                        
+                        <!-- Card 2: Schedule -->
+                        <div class="glass-card p-5 border-l-4 border-primary-purple hover:shadow-xl transition duration-300">
+                            <i data-lucide="calendar-check" class="w-8 h-8 text-primary-purple mb-2"></i>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">View Schedule</h3>
+                            <p class="text-sm text-gray-600">You have **5 sessions** booked this week. Check details here.</p>
+                        </div>
+
+                        <!-- Card 3: Metrics -->
+                        <div class="glass-card p-5 border-l-4 border-yellow-500 hover:shadow-xl transition duration-300">
+                            <i data-lucide="bar-chart-3" class="w-8 h-8 text-yellow-600 mb-2"></i>
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">Performance Metrics</h3>
+                            <p class="text-sm text-gray-600">Your average rating is **4.8/5.0**. Keep up the great work!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+<!-- Tailwind CSS CDN link (add in <head> if needed) -->
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+ <h2 class="underline m-6,mt-24 p-4 font-bold text-center text-2xl ">Members</h2>
+ <section class="flex flex-row flex-wrap ">
+{% for member in members %}
+<div class="max-w-xs mx-auto mt-12 group relative rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-indigo-400 via-emerald-300 to-purple-500 p-1 transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+  <div class="relative bg-white rounded-2xl p-6 flex flex-col items-center justify-center">
+    <div class="w-full text-center mb-6">
+      <h2 class="text-2xl font-bold mb-2 text-indigo-600 transition-colors duration-300 group-hover:text-purple-600">
+        Name: <span class="font-semibold text-gray-900 ml-1">{{member.first_name}} {{member.Last_name}}    </span>
+      </h2>
+      <p class="text-lg font-medium mb-1 text-gray-800 transition-colors duration-300 group-hover:text-emerald-600">
+        Gender: <span class="font-semibold text-gray-700 ml-1">{{member.gender}}</span>
+      </p>
+      <p class="text-md font-medium mt-2 text-gray-700 transition-colors duration-300 group-hover:text-indigo-700">
+        Plan: <span class="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 shadow group-hover:bg-purple-200 group-hover:text-purple-800">{{member.plan}}</span>
+      </p>
+    </div>
+    <div class="absolute inset-0 pointer-events-none animate-pulse opacity-10 bg-gradient-to-tr from-indigo-500 via-emerald-400 to-purple-500 blur-3xl"></div>
+  </div>
+</div>
+
+{% endfor %}
+</section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="mt-8 py-4 text-center text-gray-600 border-t border-gray-200 bg-white/70">
+            <p class="text-sm">&copy; 2024 Trainer Portal. All rights reserved. | <span class="text-primary-purple">Version 1.0</span></p>
+        </footer>
+    </div>
+    <!-- Frontend JavaScript -->
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // --- Modal Functions ---
+        const modal = document.getElementById('notification-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalClose = document.getElementById('modal-close');
+
+        function showNotification(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Navigation Active State (Static Demo) ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+
+        function setActiveLink(view) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-view') === view) {
+                    link.classList.add('active');
+                }
+            });
+            mobileNavLinks.forEach(link => {
+                // Remove active class from mobile links as well if needed, but here we just manage desktop.
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const view = link.getAttribute('data-view');
+                // setActiveLink(view); // Uncomment if you want visual active state on click
+                // In a real app, this would load the content for that view.
+            });
+        });
+    </script>
+</body>
+</html>

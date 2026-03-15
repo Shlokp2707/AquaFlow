@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Sky Blue Pools | High Energy</title>
+    <style>
+        :root {
+            --power-blue: #007BFF;
+            --cyan: #00E5FF;
+            --electric-purple: #9D50BB;
+            --alert-red: #FF4D4D;
+            --glass-white: rgba(255, 255, 255, 0.9);
+            --text-dark: #1A237E;
+        }
+
+        /* THE GRADIENT BACKGROUND */
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #00E5FF 50%, #9D50BB 100%);
+            background-attachment: fixed; /* Keeps the gradient smooth during scroll */
+            color: var(--text-dark);
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        /* High-Energy Header */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+        }
+
+        /* Animated Contact Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .contact-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: var(--cyan);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+        }
+
+        .blue-text { color: var(--power-blue); font-weight: 800; font-size: 1.4rem; }
+        
+        /* The Red Action Button */
+        .emergency-btn {
+            background: linear-gradient(45deg, var(--alert-red), #ff0000);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(255, 77, 77, 0.4);
+            transition: 0.3s;
+        }
+
+        .emergency-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 77, 77, 0.6);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 80px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 40px;
+            border: 1px solid white;
+        }
+
+        .faq-title {
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            font-weight: 900;
+        }
+
+        details {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 20px;
+            padding: 10px 25px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        details[open] {
+            border-color: var(--electric-purple);
+            box-shadow: 0 5px 15px rgba(157, 80, 187, 0.1);
+        }
+
+        summary {
+            padding: 15px 0;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            color: var(--power-blue);
+        }
+
+        summary::after { content: "➕"; font-size: 0.8rem; color: var(--electric-purple); }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Pool Support Center</h1>
+        <p>Expert care in <strong>Cyan-Clear</strong> speed.</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="contact-card">
+            <div class="card-icon">⚡</div>
+            <h3>Tech & Automation</h3>
+            <p>Smart pool setup & heating help.</p>
+            <div class="blue-text">tech@skyblue.com</div>
+        </div>
+
+        <div class="contact-card">
+            <div class="card-icon">🆘</div>
+            <h3 style="color: var(--alert-red);">Emergency Repair</h3>
+            <p>Critical leaks or equipment failure?</p>
+            <a href="tel:18005550199" class="emergency-btn">Call Now</a>
+        </div>
+
+        <div class="contact-card">
+            <div class="card-icon">🏗️</div>
+            <h3 style="color: var(--electric-purple);">New Builds</h3>
+            <p>Design your purple-tinted paradise.</p>
+            <div class="blue-text" style="color: var(--electric-purple);">build@skyblue.com</div>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-title">Help & FAQs</div>
+        
+        <details>
+            <summary>My pool is losing water fast—what do I do?</summary>
+            <p>Turn off your pump immediately and check the "Bucket Test" method. If it's more than 1/4 inch a day, call our Emergency line above.</p>
+        </details>
+
+        <details>
+            <summary>How do I sync my smart heater to my phone?</summary>
+            <p>Ensure your pool hub is on the 2.4GHz Wi-Fi band. Our Tech Support team can walk you through the "Sky-Connect" app over the phone.</p>
+        </details>
+
+        <details>
+            <summary>Are your chemicals eco-friendly?</summary>
+            <p>Yes! We offer a "Purple-Pure" mineral system that uses 50% less chlorine while keeping the water crystal clear.</p>
+        </details>
+    </div>
+</div>
+
+</body>
+</html>

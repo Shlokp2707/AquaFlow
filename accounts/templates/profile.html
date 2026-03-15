@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use Inter font and enable custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-cyan': '#06b6d4',
+                        'primary-purple': '#7e22ce',
+                    },
+                    keyframes: {
+                        // Custom keyframe for content fade-in and slide-up
+                        fadeInSlideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                    animation: {
+                        'fade-in-slide': 'fadeInSlideUp 0.6s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Add Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styling for Background and Glass Effect */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Maintaining the light theme gradient */
+            background: linear-gradient(135deg, #ffffff 0%, #06b6d44d 50%, #7e22ce4d 100%);
+            min-height: 100vh;
+        }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.85); /* Slightly less opaque */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            border-radius: 1.5rem; /* Large rounded corners */
+            opacity: 0; /* Initial state for animation */
+        }
+        /* Style for read-only fields */
+        input[readonly], textarea[readonly] {
+            cursor: not-allowed;
+            background-color: #f3f4f6 !important;
+            border-color: #d1d5db !important;
+            color: #4b5563 !important;
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-8">
+
+    <!-- Main Container -->
+    <div id="app-container" class="max-w-3xl mx-auto">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-10 p-6 glass-card animate-fade-in-slide" style="animation-delay: 0s;">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-primary-purple">Complete Your Profile</h1>
+            <p class="text-gray-600 mt-2 text-lg">Update your details to finalize your user account.</p>
+            <div id="user-info" class="mt-4 text-xs text-gray-700 p-2 bg-gray-100/50 rounded-lg border border-primary-cyan/20">
+                Logged in as: <span class="font-mono text-primary-purple break-all font-medium">user_mock_uid_123456789</span>
+                <br/>
+                <span class="text-xs text-gray-500 italic">This is placeholder user identification.</span>
+            </div>
+        </header>
+        
+  {% for message in messages%}
+  <div class="p-1 m-3 rounded-xl shadow-lg text-center bg-red-400  ">     
+  <h3 id="" class="text-2xl font-bold mb-4  text-gray-50">{{message}}</h3>
+                </div> 
+            {% endfor %}
+        <!-- Profile Form Card -->
+        <div class="p-6 sm:p-8 glass-card animate-fade-in-slide" style="animation-delay: 0.1s;">
+            <!-- The form is now static. You will need to integrate your backend framework's form submission here. -->
+            <form id="profile-form" method ="POST" class="space-y-6">
+                {% csrf_token %}
+                <!-- Personal Details Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="first_name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input type="text" id="first_name" name ="first_name" placeholder="First Name" value="{{first_name}}" required
+                               class="w-full p-3 border border-primary-purple/30 rounded-xl focus:ring-primary-purple focus:border-primary-purple transition duration-150 bg-white/70">
+                    </div>
+                    <div>
+                        <label for="last_name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input type="text" id="last_name" name ="last_name" placeholder="Last Name" value="{{last_name}}" required
+                               class="w-full p-3 border border-primary-purple/30 rounded-xl focus:ring-primary-purple focus:border-primary-purple transition duration-150 bg-white/70">
+                    </div>
+                </div>
+
+                <!-- Email & Phone Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email (Read-Only)</label>
+                        <!-- Email field is pre-filled and read-only as per your model description -->
+                        <input type="email" name ="email" id="email" placeholder="email@example.com" value="{{email}}" readonly
+                               class="w-full p-3 border border-primary-purple/30 rounded-xl bg-white/70">
+                    </div>
+                    <div>
+                        <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (10 Digits)</label>
+                        <input type="tel" id="phone_number" name ="mobile_no" placeholder="9876543210"  required maxlength="10" minlength="10"
+                               class="w-full p-3 border border-primary-purple/30 rounded-xl focus:ring-primary-purple focus:border-primary-purple transition duration-150 bg-white/70">
+                    </div>
+                </div>
+
+                <!-- DOB & Gender Row -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="dob" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                        <input type="date" id="dob"  name ="dob"
+                               class="w-full p-3 border border-primary-purple/30 rounded-xl focus:ring-primary-purple focus:border-primary-purple transition duration-150 bg-white/70">
+                    </div>
+                    <div>
+                        <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                        <select id="gender" name ="gender"
+                                class="w-full p-3 border border-primary-purple/30 rounded-xl focus:ring-primary-purple focus:border-primary-purple transition duration-150 bg-white/70 appearance-none pr-8">
+                            <option value="">Select Gender</option>
+                            <!-- Mocking 'Male' as selected existing value -->
+                            <option value="male" selected>Male</option>
+                            <option value="female">Female</option>
+                           
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Adhaar Number Row -->
+                <div>
+                    <label for="adhaar_no" class="block text-sm font-medium text-gray-700 mb-1">Adhaar Number (12 Digits)</label>
+                    <input type="text"  name ="adhaar_no" id="adhaar_no" placeholder="XXXXXXXXXXXX" required maxlength="12" minlength="12"
+                           class="w-full p-3 border border-primary-purple/30 rounded-xl focus:ring-primary-purple focus:border-primary-purple transition duration-150 bg-white/70">
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address (Max 300 characters)</label>
+                    <textarea id="address" rows="3" name ="address" placeholder="Street Address, City, State, Zip Code" maxlength="300"
+                              class="w-full p-3 border border-primary-purple/30 rounded-xl focus:ring-primary-purple focus:border-primary-purple transition duration-150 bg-white/70"></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit"
+                        class="w-full bg-primary-purple text-white font-semibold py-3 rounded-xl hover:bg-primary-cyan transition duration-300 shadow-lg shadow-primary-purple/30 flex items-center justify-center space-x-2"
+                          >
+                    Update Profile
+                    {% comment %} onclick="showNotification('Profile Updated', 'Profile form submitted (Static Demo). Integrate your backend API here.')" {% endcomment %}
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Frontend-only JavaScript for interaction and aesthetics -->
+    <script>
+        // --- Modal Functions ---
+        const modal = document.getElementById('notification-modal'); 
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalClose = document.getElementById('modal-close');
+
+        function showNotification(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        });
+
+        // --- Animation Trigger ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // This ensures the glass cards fade in smoothly on page load
+            document.querySelectorAll('.glass-card').forEach(el => {
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>

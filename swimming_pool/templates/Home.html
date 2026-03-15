@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaFlow | Swimming Pool Management System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #182e61ff, #1e293b);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .animate-glow {
+      text-shadow: 0 0 10px #06b6d4, 0 0 20px #7e22ce;
+    }
+
+    .glow-button {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .glow-button:hover {
+      box-shadow: 0 0 20px #06b6d4, 0 0 40px #7e22ce;
+      transform: scale(1.05);
+    }
+
+    .feature-card:hover {
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 bg-gradient-to-r from-[#06b6d4] to-[#7e22ce] shadow-lg">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-white animate-glow">AquaFlow</h1>
+      <ul class="flex space-x-6">
+        <li><a href="#" class="hover:text-[#6ff267] transition">Home</a></li>
+        <li><a href="#about" class="hover:text-[#6ff267] transition">About</a></li>
+        <li><a href="#services" class="hover:text-[#6ff267] transition">Services</a></li>
+        <li><a href="contactus/" class="hover:text-[#6ff267] transition">Contact</a></li>
+          <li><a href="accounts/signup/" class="hover:text-[#6ff267] transition">Register</a></li>
+        
+             <div class ="">
+          <div class="relative max-w-md  mx-auto  group ">
+    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+    
+    <div class="relative ">
+        <select id="login-select"
+            class="block w-full   
+                   bg-white/90 backdrop-blur-sm 
+                   border border-white/50 rounded-xl
+                   text-gray-900 font-extrabold text-center uppercase tracking-wider
+                   appearance-none cursor-pointer
+                   shadow-xl transition-all duration-300
+                   hover:bg-white hover:scale-[1.02]
+                   focus:ring-4 focus:ring-cyan-400/30 focus:border-purple-500 outline-none"
+            onchange="if(this.value) location = this.value;">
+            
+            <option value="" class="font-bold h-10">✨ Login</option>
+            <option value="/trainer/login/" class="font-bold text-purple-700">🏆 Login as Trainer</option>
+            <option value="/accounts/login/" class="font-bold text-cyan-700">🏊 Login as Swimmer</option>
+        </select>
+    </div>
+</div>
+        </div>
+        </ul>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="relative h-screen flex flex-col justify-center items-center text-center overflow-hidden">
+   <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+    <source src="{% static 'videos/pool-bg.mp4.mp4' %}" type="video/mp4">
+  </video>
+
+    <div class="relative z-10">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 animate-glow">Dive into a Better Experience</h1>
+      <p class="text-lg md:text-2xl mb-8">Manage members, trainers, and sessions easily with our system.</p>
+      <div class="space-x-4">
+        <a href="/accounts/login/"
+          class="glow-button bg-[#06b6d4] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#0891b2] transition">Get
+          Started</a>
+        <a href="#services"
+          class="glow-button bg-[#7e22ce] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#9333ea] transition">Learn
+          More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 container mx-auto text-center fade-up">
+    <h2 class="text-4xl font-bold mb-6 text-[#06b6d4] animate-glow">About Us</h2>
+    <p class="max-w-3xl mx-auto text-gray-300">
+      The AquaFlow Swimming Pool Management System helps manage pool memberships, track trainer schedules,
+      and monitor facility maintenance effortlessly. Our mission is to bring simplicity, efficiency, and
+      professionalism to every pool management task — so you can focus on delivering the best experience
+      to your members.
+    </p>
+
+    <section class=" rounded-xl py-16">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold text-cyan-400 mb-10">Our Beautiful Pool</h2>
+    <p class="text-gray-300 mb-12">Explore our modern, well-maintained swimming pools and relaxing environments.</p>
+
+    <!-- Image Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'images\OIP.jpg' %}" alt="Pool 1" class="w-full h-64 object-cover">
+      </div>
+       <div class="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'images\OIP.webp' %}" alt="Pool 2" class="w-full h-64 object-cover">
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'images\OIP1.jpg' %}" alt="Pool 3" class="w-full h-64 object-cover">
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'images\OIP2.jpg' %}" alt="Pool 4" class="w-full h-64 object-cover">
+      </div>
+      <div class="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'images\OIP (1).webp' %}" alt="Pool 5" class="w-full h-64 object-cover">
+      </div>
+     <div class="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+        <img src="{% static 'images\OIP (2).webp' %}" alt="Pool 6" class="w-full h-64 object-cover">
+      </div> 
+    </div>
+  </div>
+</section>
+  </section>
+
+  <!-- Features Section -->
+  <section id="services" class="py-20 bg-gradient-to-r from-[#1e1b4b] to-[#0f172a] text-center fade-up">
+    <h2 class="text-4xl font-bold mb-10 text-[#7e22ce] ">Our Facilities</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-6">
+      <div class="feature-card bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md">
+        <img src="https://cdn-icons-png.flaticon.com/512/1669/1669386.png" alt="Trainer"
+          class="w-16 mx-auto mb-4 animate-bounce" />
+        <h3 class="text-xl font-semibold mb-2 text-[#06b6d4]">Expert Trainers</h3>
+        <p class="text-gray-300">Certified professionals to help you learn and improve your swimming skills.</p>
+      </div>
+      <div class="feature-card bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md">
+        <img src="https://cdn-icons-png.flaticon.com/512/3039/3039424.png" alt="Membership"
+          class="w-16 mx-auto mb-4 animate-bounce" />
+        <h3 class="text-xl font-semibold mb-2 text-[#7e22ce]">Smart Memberships</h3>
+        <p class="text-gray-300">Easily manage members, renewals, and track attendance online.</p>
+      </div>
+      <div class="feature-card bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md">
+        <img src="https://cdn-icons-png.flaticon.com/512/4359/4359920.png" alt="Cleanliness"
+          class="w-16 mx-auto mb-4 animate-bounce" />
+        <h3 class="text-xl font-semibold mb-2 text-[#06b6d4]">Clean Facilities</h3>
+        <p class="text-gray-300">We ensure top-notch hygiene and cleanliness for a refreshing experience.</p>
+      </div>
+      <div class="feature-card bg-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-md">
+        <img src="https://cdn-icons-png.flaticon.com/512/3596/3596097.png" alt="Safety"
+          class="w-16 mx-auto mb-4 animate-bounce" />
+        <h3 class="text-xl font-semibold mb-2 text-[#7e22ce]">Safety First</h3>
+        <p class="text-gray-300">Trained lifeguards and advanced safety measures to keep everyone secure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-gradient-to-r from-[#7e22ce] to-[#06b6d4] py-10 text-center">
+    <h3 class="text-2xl font-bold mb-4">Connect With Us</h3>
+    <div class="flex justify-center space-x-6 mb-4">
+      <a href="#" class="hover:scale-110 transition"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png"
+          class="w-8" /></a>
+      <a href="#" class="hover:scale-110 transition"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+          class="w-8" /></a>
+      <a href="#" class="hover:scale-110 transition"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+          class="w-8" /></a>
+    </div>
+    <p class="text-sm text-gray-100">© 2025 AquaFlow. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll Animation
+    const faders = document.querySelectorAll('.fade-up');
+    const appearOptions = { threshold: 0.2 };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
+</body>
+</html>
